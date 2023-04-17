@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { Button, ButtonLogin, Container, Content, Figure, Nav } from "./styles";
 
 export const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <Content>
@@ -22,7 +23,9 @@ export const Navbar = () => {
 
         <Nav>
           <Button>Criar conta grátis</Button>
-          <ButtonLogin>Entrar</ButtonLogin>
+          <ButtonLogin onClick={() => navigate("/auth/login")}>
+            Entrar
+          </ButtonLogin>
         </Nav>
       </Content>
     </Container>

@@ -10,9 +10,10 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Footer = () => {
+  const navigate = useNavigate();
   return (
     <FooterContainer>
       <Content>
@@ -29,7 +30,9 @@ export const Footer = () => {
                 <Link to="/">Termos de serviço</Link>
               </li>
               <li>
-                <button>Começe agora</button>
+                <button onClick={() => navigate("/auth/login")}>
+                  Começe agora
+                </button>
               </li>
             </ul>
           </NavFooter>

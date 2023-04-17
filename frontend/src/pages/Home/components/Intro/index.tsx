@@ -1,9 +1,12 @@
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion } from "framer-motion";
 import { Container, LeftContainer, RightContainer } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 export const Intro = () => {
   const transition = { duration: 2, type: "spring" };
+  const navigate = useNavigate();
+
   return (
     <Container>
       <LeftContainer>
@@ -21,7 +24,7 @@ export const Intro = () => {
             Graça
           </p>
 
-          <button>
+          <button onClick={() => navigate("/auth/login")}>
             Teste agora mesmo
             <span>
               <ArrowForwardIcon />

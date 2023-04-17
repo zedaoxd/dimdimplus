@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FooterContainer = styled.footer`
   width: 100%;
-  height: 10rem;
+  height: 12rem;
   background-color: #fec142;
 `;
 
@@ -11,8 +11,6 @@ export const Content = styled.div`
   height: 100%;
   margin: 0 auto;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   flex-direction: column;
 `;
 
@@ -35,6 +33,7 @@ export const BottomSide = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
 `;
 
 export const SocialMedia = styled.ul`

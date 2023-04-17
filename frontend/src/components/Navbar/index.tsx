@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import { Button, Container, Content, Figure, Nav } from "./styles";
+import { Button, ButtonLogin, Container, Content, Figure, Nav } from "./styles";
 
 export const Navbar = () => {
   return (
@@ -21,18 +21,8 @@ export const Navbar = () => {
         </Link>
 
         <Nav>
-          <Button style={{ color: "#fff", background: "#fec142" }}>
-            Criar conta grátis
-          </Button>
-          <Button
-            style={{
-              color: "#ccc",
-              background: "transparent",
-              border: "1px solid #ccc",
-            }}
-          >
-            Entrar
-          </Button>
+          <Button>Criar conta grátis</Button>
+          <ButtonLogin>Entrar</ButtonLogin>
         </Nav>
       </Content>
     </Container>

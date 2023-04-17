@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   height: 7rem;
+  border-bottom: 1px solid #bbb;
 `;
 
 export const Content = styled.div`
@@ -61,10 +62,30 @@ export const Button = styled.button`
   background: #fec142;
   padding: 0.7rem 1rem;
   border-radius: 30px;
-  border: 0;
+  border: 1px solid transparent;
+  box-shadow: 0px 10px 24px 3px rgba(251, 161, 40, 0.42);
   transition: all 0.2s;
 
   &:hover {
-    filter: brightness(0.9);
+    color: #fec142;
+    border: 1px solid #fec142;
+    background: #fff;
+  }
+`;
+
+export const ButtonLogin = styled.button`
+  font-size: 1rem;
+  color: #bbb;
+  background: transparent;
+  padding: 0.7rem 1rem;
+  border-radius: 30px;
+  border: 1px solid #bbb;
+  box-shadow: 0px 10px 24px 3px rgba(251, 161, 40, 0.42);
+  transition: all 0.2s;
+
+  &:hover {
+    color: #fff;
+    border: 1px solid #fec142;
+    background: #fec142;
   }
 `;

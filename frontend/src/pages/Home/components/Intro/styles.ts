@@ -5,6 +5,7 @@ export const Container = styled.section`
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-top: 5rem;
 `;
 
 export const LeftContainer = styled.div`
@@ -14,20 +15,20 @@ export const LeftContainer = styled.div`
 
   & > div {
     & h1 {
-      font-size: 2rem;
+      font-size: 3rem;
       font-weight: 600;
       color: #fec142;
     }
 
     & h2 {
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: 400;
       color: #0f2358;
       margin-bottom: 0.5rem;
     }
 
     & p {
-      font-size: 1rem;
+      font-size: 1.3rem;
       font-weight: 400;
       color: #0f2358;
       margin-bottom: 1rem;

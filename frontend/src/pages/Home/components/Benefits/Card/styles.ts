@@ -20,7 +20,7 @@ export const Container = styled.div`
     justify-content: center;
 
     & svg {
-      font-size: 3rem;
+      font-size: 4rem;
       color: #fec14277;
     }
 

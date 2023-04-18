@@ -1,0 +1,1 @@
+INSERT INTO roles (id, authority) VALUES ('20c02b8e-de15-11ed-b5ea-0242ac120002', 'ROLE_USER');

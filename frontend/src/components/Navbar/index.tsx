@@ -22,7 +22,9 @@ export const Navbar = () => {
         </Link>
 
         <Nav>
-          <Button>Criar conta grátis</Button>
+          <Button onClick={() => navigate("/auth/signup")}>
+            Criar conta grátis
+          </Button>
           <ButtonLogin onClick={() => navigate("/auth/login")}>
             Entrar
           </ButtonLogin>

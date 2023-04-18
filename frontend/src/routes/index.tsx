@@ -1,17 +1,12 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Auth, Home, Login } from "../pages";
+import { BrowserRouter } from "react-router-dom";
 import { Footer, Navbar } from "../components";
+import { AnimateRoutes } from "./AnimateRoutes";
 
 export const Approutes = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/auth" element={<Auth />}>
-          <Route path="login" element={<Login />} />
-        </Route>
-      </Routes>
+      <AnimateRoutes />
       <Footer />
     </BrowserRouter>
   );

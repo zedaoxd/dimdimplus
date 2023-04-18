@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
         background: #fff;
         color: #000;
         -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
     }
 
     body, input, button {

@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Form } from "./styles";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { signup } from "../../../services/authService";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const schema = z
   .object({
@@ -24,19 +27,28 @@ const schema = z
 
 type FormData = z.infer<typeof schema>;
 
-export const Sigup = () => {
+export const Signup = () => {
   const {
     handleSubmit,
     register,
     formState: { errors, isValid },
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     mode: "all",
     reValidateMode: "onChange",
   });
+  const navigation = useNavigate();
+  const { mutateAsync, isLoading, isError } = useMutation(signup, {});
 
   const onSubmit = handleSubmit((data) => {
-    console.log(schema.parse(data));
+    mutateAsync(schema.parse(data)).then((res) => {
+      if (res.status === 200) {
+        toast.success("Cadastrado com sucesso");
+        navigation("/auth/login");
+      }
+      reset();
+    });
   });
 
   return (
@@ -76,7 +88,7 @@ export const Sigup = () => {
           placeholder="Confirme a senha"
           style={{ border: errors.passwordConfirmation && "1px solid red" }}
         />
-        <button type="submit" disabled={!isValid}>
+        <button type="submit" disabled={!isValid || isLoading}>
           Cadastrar
         </button>
         <div>

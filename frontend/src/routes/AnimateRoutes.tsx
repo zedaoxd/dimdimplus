@@ -5,7 +5,7 @@ import {
   Home,
   Login,
   ResetPassword,
-  Sigup,
+  Signup,
 } from "../pages";
 import { AnimatePresence } from "framer-motion";
 
@@ -19,7 +19,7 @@ export const AnimateRoutes = () => {
         <Route path="/auth" element={<Auth />}>
           <Route path="" element={<Login />} />
           <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Sigup />} />
+          <Route path="signup" element={<Signup />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="reset-password" element={<ResetPassword />} />
         </Route>

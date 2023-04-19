@@ -47,6 +47,12 @@ export const Form = styled.form`
     }
   }
 
+  & > p {
+    margin: 0.2rem 0;
+    color: red;
+    font-size: 0.8rem;
+  }
+
   & > button {
     width: 100%;
     height: 3rem;
@@ -63,6 +69,11 @@ export const Form = styled.form`
 
     &:hover {
       filter: brightness(0.9);
+    }
+
+    &:disabled {
+      background: #999;
+      cursor: not-allowed;
     }
   }
 

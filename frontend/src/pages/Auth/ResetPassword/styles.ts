@@ -47,6 +47,11 @@ export const Form = styled.form`
     }
   }
 
+  & > p {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
   & > button {
     width: 100%;
     height: 3rem;

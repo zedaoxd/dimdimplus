@@ -13,7 +13,7 @@ export const Sigup = () => {
         <button type="submit">Cadastrar</button>
         <div>
           <p>
-            Já tem conta? <Link to="/admin/login">entre</Link>
+            Já tem conta? <Link to="/auth/login">entre</Link>
           </p>
         </div>
       </Form>

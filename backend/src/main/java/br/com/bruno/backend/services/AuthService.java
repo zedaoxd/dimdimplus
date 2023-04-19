@@ -7,6 +7,7 @@ import br.com.bruno.backend.entities.User;
 import br.com.bruno.backend.repositories.RoleRepository;
 import br.com.bruno.backend.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -35,10 +36,10 @@ public class AuthService {
 
     public AuthResponse authenticate(AuthRequest authenticationRequest) {
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        authenticationRequest.getEmail(),
-                        authenticationRequest.getPassword()
-                )
+            new UsernamePasswordAuthenticationToken(
+                authenticationRequest.getEmail(),
+                authenticationRequest.getPassword()
+            )
         );
         User user = userRepository.findByEmail(authenticationRequest.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));

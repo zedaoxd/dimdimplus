@@ -39,18 +39,17 @@ public class WebSecurityConfiguration {
         }
 
         http
-                .csrf()
-                .disable()
-                .authorizeHttpRequests()
-                .requestMatchers(PUBLIC_MATCHERS).permitAll()
-                // TODO: lembrar de por autenticação depois
-                .anyRequest().permitAll()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authenticationProvider(authenticationProvider())
-                .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
+            .csrf()
+            .disable()
+            .authorizeHttpRequests()
+            .requestMatchers(PUBLIC_MATCHERS).permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .authenticationProvider(authenticationProvider())
+            .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

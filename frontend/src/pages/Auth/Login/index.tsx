@@ -12,10 +12,10 @@ export const Login = () => {
 
         <div>
           <p>
-            Não tem conta? <Link to="/admin/signup">cadastre-se</Link>
+            Não tem conta? <Link to="/auth/signup">cadastre-se</Link>
           </p>
           <p>
-            <Link to="/admin/recovery">Recuperar senha</Link>
+            <Link to="/auth/recovery">Recuperar senha</Link>
           </p>
         </div>
       </Form>

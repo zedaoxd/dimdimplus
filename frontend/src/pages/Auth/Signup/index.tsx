@@ -6,6 +6,7 @@ import { z } from "zod";
 import { signup } from "../../../services/authService";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { PulseLoader } from "react-spinners";
 
 const schema = z
   .object({
@@ -39,7 +40,7 @@ export const Signup = () => {
     reValidateMode: "onChange",
   });
   const navigation = useNavigate();
-  const { mutateAsync, isLoading, isError } = useMutation(signup, {});
+  const { mutateAsync, isLoading } = useMutation(signup);
 
   const onSubmit = handleSubmit((data) => {
     mutateAsync(schema.parse(data)).then((res) => {
@@ -89,7 +90,7 @@ export const Signup = () => {
           style={{ border: errors.passwordConfirmation && "1px solid red" }}
         />
         <button type="submit" disabled={!isValid || isLoading}>
-          Cadastrar
+          {isLoading ? <PulseLoader color="white" /> : "Cadastrar"}
         </button>
         <div>
           <p>

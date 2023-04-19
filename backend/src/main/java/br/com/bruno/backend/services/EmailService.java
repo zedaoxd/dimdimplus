@@ -1,5 +1,6 @@
 package br.com.bruno.backend.services;
 
+import br.com.bruno.backend.controllers.responses.ResetPasswordResponse;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -20,7 +21,7 @@ public class EmailService {
     private final JavaMailSender mailSender;
 
     @SneakyThrows
-    public void sendEmail(String email, String token)  {
+    public ResetPasswordResponse sendEmail(String email, String token)  {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
@@ -43,5 +44,7 @@ public class EmailService {
         helper.setText(content, true);
 
         mailSender.send(message);
+
+        return new ResetPasswordResponse("Email sent");
     }
 }

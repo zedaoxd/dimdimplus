@@ -3,6 +3,7 @@ package br.com.bruno.backend.services;
 import br.com.bruno.backend.controllers.requests.AuthRequest;
 import br.com.bruno.backend.controllers.requests.RegisterRequest;
 import br.com.bruno.backend.controllers.responses.AuthResponse;
+import br.com.bruno.backend.controllers.responses.ResetPasswordResponse;
 import br.com.bruno.backend.entities.User;
 import br.com.bruno.backend.repositories.RoleRepository;
 import br.com.bruno.backend.repositories.UserRepository;
@@ -57,14 +58,16 @@ public class AuthService {
         userRepository.save(user);
     }
 
-    public User getByResetPasswordToken(String token) {
-        return userRepository.findByResetPasswordToken(token)
-                .orElseThrow(() -> new EntityNotFoundException("User not found: " + token));
-    }
-
-    public void updatePassword(User user, String newPassword) {
+    public ResetPasswordResponse resetPassword(String token, String newPassword) {
+        User user = getByResetPasswordToken(token);
         user.setPassword(passwordEncoder.encode(newPassword));
         user.setResetPasswordToken(null);
         userRepository.save(user);
+        return new ResetPasswordResponse("Password updated");
+    }
+
+    private User getByResetPasswordToken(String token) {
+        return userRepository.findByResetPasswordToken(token)
+                .orElseThrow(() -> new EntityNotFoundException("User not found: " + token));
     }
 }

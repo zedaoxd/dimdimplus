@@ -6,6 +6,7 @@ import br.com.bruno.backend.controllers.responses.AuthResponse;
 import br.com.bruno.backend.entities.User;
 import br.com.bruno.backend.repositories.RoleRepository;
 import br.com.bruno.backend.repositories.UserRepository;
+import br.com.bruno.backend.services.exceptions.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +18,7 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthService {
 
     private final UserRepository userRepository;
@@ -42,8 +44,27 @@ public class AuthService {
             )
         );
         User user = userRepository.findByEmail(authenticationRequest.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new EntityNotFoundException("User not found: " + authenticationRequest.getEmail()));
         var jwtToken = jwtService.generateToken(user);
         return new AuthResponse(jwtToken);
+    }
+
+
+    public void updateResetPasswordToken(String token, String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("User not found: " + email));
+        user.setResetPasswordToken(token);
+        userRepository.save(user);
+    }
+
+    public User getByResetPasswordToken(String token) {
+        return userRepository.findByResetPasswordToken(token)
+                .orElseThrow(() -> new EntityNotFoundException("User not found: " + token));
+    }
+
+    public void updatePassword(User user, String newPassword) {
+        user.setPassword(passwordEncoder.encode(newPassword));
+        user.setResetPasswordToken(null);
+        userRepository.save(user);
     }
 }

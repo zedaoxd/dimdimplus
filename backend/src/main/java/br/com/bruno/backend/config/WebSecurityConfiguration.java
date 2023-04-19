@@ -43,7 +43,7 @@ public class WebSecurityConfiguration {
             .disable()
             .authorizeHttpRequests()
             .requestMatchers(PUBLIC_MATCHERS).permitAll()
-            .anyRequest().authenticated()
+            .anyRequest().permitAll()
             .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

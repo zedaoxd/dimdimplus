@@ -23,10 +23,21 @@ public class User implements UserDetails {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+
+    @Column(nullable = false, length = 100)
     private String name;
+
+    @Column(nullable = false, length = 100, unique = true)
     private String email;
+
+    @Column(nullable = false)
     private String password;
+
     private String photo;
+
+    @Column(length = 150)
+    private String resetPasswordToken;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),

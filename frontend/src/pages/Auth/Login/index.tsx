@@ -15,7 +15,7 @@ export const Login = () => {
             Não tem conta? <Link to="/auth/signup">cadastre-se</Link>
           </p>
           <p>
-            <Link to="/auth/recovery">Recuperar senha</Link>
+            <Link to="/auth/forgot-password">Recuperar senha</Link>
           </p>
         </div>
       </Form>

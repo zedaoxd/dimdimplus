@@ -1,5 +1,12 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { Auth, ForgotPassword, Home, Login, Sigup } from "../pages";
+import {
+  Auth,
+  ForgotPassword,
+  Home,
+  Login,
+  ResetPassword,
+  Sigup,
+} from "../pages";
 import { AnimatePresence } from "framer-motion";
 
 export const AnimateRoutes = () => {
@@ -14,6 +21,7 @@ export const AnimateRoutes = () => {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Sigup />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="reset-password" element={<ResetPassword />} />
         </Route>
       </Routes>
     </AnimatePresence>

@@ -3,3 +3,4 @@ export * from "./Auth";
 export * from "./Auth/Login";
 export * from "./Auth/Signup";
 export * from "./Auth/ForgotPassword";
+export * from "./Auth/ResetPassword";

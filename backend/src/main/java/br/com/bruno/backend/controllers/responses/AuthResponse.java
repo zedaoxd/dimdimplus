@@ -11,4 +11,5 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class AuthResponse implements Serializable {
     private String token;
+    private UserResponse user;
 }

@@ -15,11 +15,12 @@ const schema = z
     password: z
       .string()
       .min(6, "Senha muito curta")
-      .max(20, "Senha muito grande"),
-    passwordConfirmation: z
-      .string()
-      .min(6, "Senha muito curta")
-      .max(20, "Senha muito grande"),
+      .max(20, "Senha muito grande")
+      .regex(/[a-z]/, "Senha deve conter uma letra minúscula")
+      .regex(/[A-Z]/, "Senha deve conter uma letra maiúscula")
+      .regex(/[0-9]/, "Senha deve conter um número")
+      .regex(/[^a-zA-Z0-9]/, "Senha deve conter um caractere especial"),
+    passwordConfirmation: z.string(),
   })
   .refine((data) => data.password === data.passwordConfirmation, {
     message: "Senhas não conferem",

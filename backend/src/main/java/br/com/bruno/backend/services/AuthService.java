@@ -4,6 +4,7 @@ import br.com.bruno.backend.controllers.requests.AuthRequest;
 import br.com.bruno.backend.controllers.requests.RegisterRequest;
 import br.com.bruno.backend.controllers.responses.AuthResponse;
 import br.com.bruno.backend.controllers.responses.ResetPasswordResponse;
+import br.com.bruno.backend.controllers.responses.UserResponse;
 import br.com.bruno.backend.entities.User;
 import br.com.bruno.backend.repositories.RoleRepository;
 import br.com.bruno.backend.repositories.UserRepository;
@@ -34,7 +35,7 @@ public class AuthService {
         user.setRoles(Set.of(roleRepository.findByAuthority("ROLE_USER")));
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
-        return new AuthResponse(jwtToken);
+        return new AuthResponse(jwtToken, null);
     }
 
     public AuthResponse authenticate(AuthRequest authenticationRequest) {
@@ -47,7 +48,7 @@ public class AuthService {
         User user = userRepository.findByEmail(authenticationRequest.getEmail())
                 .orElseThrow(() -> new EntityNotFoundException("User not found: " + authenticationRequest.getEmail()));
         var jwtToken = jwtService.generateToken(user);
-        return new AuthResponse(jwtToken);
+        return new AuthResponse(jwtToken, new UserResponse(user));
     }
 
 

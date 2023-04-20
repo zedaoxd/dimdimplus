@@ -15,6 +15,12 @@ export const Container = styled.div`
     color: #ff9000;
     text-align: center;
   }
+
+  & > p {
+    text-align: center;
+    margin-top: 1rem;
+    color: red;
+  }
 `;
 
 export const Form = styled.form`
@@ -63,6 +69,10 @@ export const Form = styled.form`
 
     &:hover {
       filter: brightness(0.9);
+    }
+
+    &:disabled {
+      background: #999;
     }
   }
 

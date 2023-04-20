@@ -1,19 +1,22 @@
 import { createContext, useState } from "react";
 import { User } from "../@types";
 import { login } from "../services/authService";
-import { setAuthLocalStorage } from "../storage";
+import {
+  getAuthLocalStorage,
+  removeAuthLocalStorage,
+  setAuthLocalStorage,
+} from "../storage";
 
 type AuthContextData = {
   user: User | null;
   signIn: (data: Pick<User, "email" | "password">) => Promise<number>;
   signOut: () => void;
-  isAuthenticated: boolean;
+  isAuthenticated: () => boolean;
 };
 
 export const AuthContext = createContext({} as AuthContextData);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const isAuthenticated = false;
   const [user, setUser] = useState<User | null>(null);
 
   const signIn = async (userLogin: Pick<User, "email" | "password">) => {
@@ -28,7 +31,28 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       });
   };
 
-  const signOut = () => {};
+  const signOut = () => {
+    setUser(null);
+    removeAuthLocalStorage();
+  };
+
+  const isAuthenticated = () => {
+    const auth = getAuthLocalStorage();
+    const token = auth?.token;
+    if (!token) return false;
+
+    const [, payload] = token.split(".");
+    const payloadDecoded = JSON.parse(atob(payload));
+    const exp = payloadDecoded.exp;
+    const now = new Date().getTime() / 1000;
+
+    if (exp < now) {
+      signOut();
+      return false;
+    }
+
+    return true;
+  };
 
   return (
     <AuthContext.Provider value={{ user, signIn, signOut, isAuthenticated }}>
